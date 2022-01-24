@@ -1,8 +1,10 @@
 import streamlit as st
-import pickle
 st.title('Sentiment Analysis')
-test_model=pickle.load('model')
+import cPickle as pickle
+f = open("big_networkx_graph.pickle","rb")
+model = f.read()
+graph_data = pickle.load(model)
 ip=st.text_input('Enter your message')
-op=test_model.predict([ip])
+op=graph_data.predict([ip])
 if st.button('Predict'):
   st.title(op)
